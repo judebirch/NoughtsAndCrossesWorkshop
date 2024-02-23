@@ -9,15 +9,20 @@ public class GameBoardView : MonoBehaviour
 
     public System.Action<int> OnTileClickedAction;
 
-    public void SetupView(GameBoardModel boardModel)
+    private void Start()
     {
         for (int i = 0; i < 9; i++)
         {
             int index = i;
-
-            _tiles[index].Setup(boardModel.Tiles[index]);
-
             _tiles[index].OnTileClicked += () => OnTileClickedAction.Invoke(index);
+        }
+    }
+
+    public void SetupView(GameBoardModel boardModel)
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            _tiles[i].Setup(boardModel.Tiles[i]);
         }
     }
 
